@@ -1,11 +1,11 @@
 {
-  "name": "Шифратор текста",
-  "short_name": "Шифратор",
+  "name": "Шифроватор текста",
+  "short_name": "Шифроватор",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#333333",
-  "description": "Простой шифратор текста на корейских символах.",
+  "description": "",
   "icons": [
     {
       "src": "./images/icon-192x192.png",
