@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шифроватор</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+    
+<link rel="icon" type="image/png" href="./images/icon-192x192.png">
+<link rel="apple-touch-icon" href="./images/icon-192x192.png">
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Шифроватор</h1>
+            <p>7№5?— 8;@-35!с*</p>
+        </div>
+        
+        <div class="content">
+            <div class="tabs" id="tabsContainer">
+                <button class="tab-btn active" data-tab="encryptor">Шифратор</button>
+                <button class="tab-btn" data-tab="ocr">Распознать текст</button>
+            </div>
+
+            <div id="encryptorContent" class="tab-content active">
+                <div class="encryptor-header">
+                    <div class="mode-indicator">
+                        <span id="inputLabel">Русский</span>
+                        <svg id="swapBtn" class="swap-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M8 3L4 7l4 4"/>
+                            <path d="M4 7h16"/>
+                            <path d="M16 21l4-4-4-4"/>
+                            <path d="M20 17H4"/>
+                        </svg>
+                        <span id="outputLabel">Шифр</span>
+                    </div>
+                    <button id="clearBtn" class="clear-btn">Очистить всё</button>
+                </div>
+        
+                <div class="textarea-group">
+                    <div class="label-group">
+                        <label for="inputText">Исходный текст</label>
+                        <button class="copy-btn" id="copyInputBtn">Копировать</button>
+                    </div>
+                    <textarea id="inputText" placeholder="Введите текст для шифрования или расшифровки..." autofocus></textarea>
+                </div>
+        
+                <div class="textarea-group">
+                     <div class="label-group">
+                        <label for="outputText">Результат</label>
+                        <button class="copy-btn" id="copyOutputBtn">Копировать</button>
+                    </div>
+                    <textarea id="outputText" placeholder="Здесь появится результат обработки..."></textarea>
+                </div>
+            </div>
+
+            <div id="ocrContent" class="tab-content">
+                <div class="paste-area">
+                    <svg class="paste-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <path d="M7 10l5 5 5-5"/>
+                        <path d="M12 15V3"/>
+                    </svg>
+                    <h2>Вставьте изображение</h2>
+                    <p>Скопируйте скриншот или изображение с текстом, затем нажмите <strong>Ctrl + V</strong> в этой области</p>
+                    <div id="ocrStatus" class="ocr-status"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast">Текст скопирован!</div>
+
+    <script src="script.js"></script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').then(registration => {
+                    console.log('SW registered: ', registration);
+                }).catch(registrationError => {
+                    console.log('SW registration failed: ', registrationError);
+                });
+            });
+        }
+    </script>
+</body>
+</html>

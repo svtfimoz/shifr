@@ -1,0 +1,411 @@
+@import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Цветовая схема в стиле Apple/Spotify */
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #1a1a1a;
+    --bg-tertiary: #252525;
+    --bg-card: #161616;
+    --accent-primary: #007aff;
+    --text-primary: #ffffff;
+    --text-secondary: #8e8e93;
+    --text-muted: #636366;
+    --border-primary: #2c2c2e;
+    --border-accent: #007aff;
+    --success: #30d158;
+    --warning: #ff9f0a;
+    --error: #ff453a;
+    --shadow-light: 0 1px 3px rgba(0, 0, 0, 0.12);
+    --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --shadow-heavy: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+}
+
+body {
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    font-weight: 400;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.50rem;
+}
+
+/* Заголовок */
+.header {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+}
+
+.header p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    font-weight: 400;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Основной контент */
+.content {
+    background: var(--bg-card);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border-primary);
+    backdrop-filter: blur(20px);
+    box-shadow: var(--shadow-heavy);
+    overflow: hidden;
+}
+
+/* Табы */
+.tabs {
+    display: none;
+}
+
+/* Контент табов */
+.tab-content {
+    display: none;
+    padding: 2rem;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Заголовок шифратора */
+.encryptor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 1rem 1.5rem;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-primary);
+}
+
+.mode-indicator {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    font-size: 1.1rem;
+    gap: 16px; /* Фиксированный отступ между элементами */
+}
+
+.mode-indicator span {
+    text-align: center;
+    min-width: 80px; /* Фиксированная минимальная ширина для стабильности */
+    white-space: nowrap;
+    color: var(--text-primary);
+}
+
+.swap-icon {
+    width: 20px;
+    height: 20px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 2px;
+    border-radius: var(--radius-sm);
+    transition: color 0.2s ease, background-color 0.2s ease;
+    flex-shrink: 0;
+    /* Убираем все трансформации для статичности */
+}
+
+.swap-icon:hover {
+    color: var(--accent-primary);
+    background: rgba(0, 122, 255, 0.1);
+    /* Убираем transform для статичности */
+}
+
+.clear-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.clear-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 122, 255, 0.1);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    border-radius: inherit;
+}
+
+.clear-btn:hover {
+    color: var(--text-primary);
+    transform: translateY(-1px);
+}
+
+.clear-btn:hover::before {
+    opacity: 1;
+}
+
+/* Группы текстовых областей */
+.textarea-group {
+    margin-bottom: 1rem;
+}
+
+.label-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.label-group label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.copy-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.copy-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 122, 255, 0.1);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    border-radius: inherit;
+}
+
+.copy-btn:hover {
+    color: var(--text-primary);
+    transform: translateY(-1px);
+}
+
+.copy-btn:hover::before {
+    opacity: 1;
+}
+
+/* Текстовые области */
+textarea {
+    width: 100%;
+    min-height: 140px;
+    padding: 1.25rem;
+    background: var(--bg-tertiary);
+    border: 2px solid var(--border-primary);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 1rem;
+    line-height: 1.5;
+    resize: none;
+    transition: all 0.3s ease;
+    outline: none;
+    /* Стили для Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: var(--text-muted) var(--bg-secondary);
+}
+
+textarea::placeholder {
+    color: var(--text-muted);
+}
+
+textarea:focus {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+    background: var(--bg-secondary);
+}
+
+/* Стилизация ползунка для WebKit-браузеров (Chrome, Safari) */
+textarea::-webkit-scrollbar {
+    width: 20px;
+}
+
+textarea::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-sm);
+}
+
+textarea::-webkit-scrollbar-thumb {
+    background-color: var(--text-muted);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--bg-secondary);
+}
+
+textarea::-webkit-scrollbar-thumb:hover {
+    background-color: var(--text-secondary);
+}
+
+.char-counter {
+    text-align: right;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+    font-weight: 500;
+}
+
+/* Toast уведомления */
+.toast {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-primary);
+    box-shadow: var(--shadow-heavy);
+    backdrop-filter: blur(20px);
+    font-weight: 500;
+    font-size: 0.95rem;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(100%);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.toast::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--accent-primary);
+    border-radius: var(--radius-md) 0 0 var(--radius-md);
+}
+
+.toast.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+/* Пульсирующая анимация для OCR */
+.spotify-pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.6;
+    }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+        gap: 1.5rem;
+    }
+    
+    .header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .header p {
+        font-size: 1rem;
+    }
+    
+    .tab-content {
+        padding: 1.5rem;
+    }
+    
+    .encryptor-header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .mode-indicator {
+        justify-content: center;
+        margin: 0 auto;
+        max-width: none;
+    }
+    
+    .paste-area {
+        padding: 3rem 1.5rem;
+    }
+    
+    .paste-area h2 {
+        font-size: 1.25rem;
+    }
+    
+    .toast {
+        bottom: 1rem;
+        right: 1rem;
+        left: 1rem;
+        transform: translateY(100%);
+    }
+    
+    .toast.show {
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 2rem;
+    }
+    
+    .tab-btn {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .tab-content {
+        padding: 1rem;
+    }
+    
+    textarea {
+        min-height: 120px;
+        padding: 1rem;
+    }
+}
